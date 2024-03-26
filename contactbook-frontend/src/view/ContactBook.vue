@@ -4,12 +4,14 @@
     <div class="mt-3 col-md-6">
       <h4>
         Danh bạ
+
         <i class="fas fa-address-book"></i>
       </h4>
+
       <ContactList
         v-if="filteredContactsCount > 0"
         :contacts="filteredContacts"
-        v-model="activeIndex"
+        v-model:activeIndex="activeIndex"
       />
 
       <p v-else>Không có liên hệ nào.</p>
@@ -32,6 +34,16 @@
           <i class="fas fa-address-card"></i>
         </h4>
         <ContactCard :contact="activeContact" />
+        <router-link
+          :to="{
+            name: 'contact.edit',
+            params: { id: activeContact._id },
+          }"
+        >
+          <span class="mt-2 badge badge-warning">
+            <i class="fas fa-edit"></i> Hiệu chỉnh</span
+          >
+        </router-link>
       </div>
     </div>
   </div>
@@ -55,8 +67,6 @@ export default {
     };
   },
   watch: {
-    // Giám sát các thay đổi của biến searchText.
-    // Bỏ chọn phần tử đang được chọn trong danh sách.
     searchText() {
       this.activeIndex = -1;
     },
