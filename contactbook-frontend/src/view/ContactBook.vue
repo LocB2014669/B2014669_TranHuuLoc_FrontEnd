@@ -11,7 +11,7 @@
       <ContactList
         v-if="filteredContactsCount > 0"
         :contacts="filteredContacts"
-        v-model:activeIndex="activeIndex"
+        v-model="activeIndex"
       />
 
       <p v-else>Không có liên hệ nào.</p>
